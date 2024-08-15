@@ -2,26 +2,33 @@ import express from "express";
 import dotenv from "dotenv";
 import Log from "./Log.mjs";
 
-//routes        /produts
-//routes params  products/:id
-//query params  products?id=1
-
 
 dotenv.config();
 const app = express();
 
- 
+
+
+//middlewres
+app.use((req, res, next) => {
+  Log(req.method, req.path);
+  next();
+})
 app.use(express.json())
+app.use(express.static("public"))  
+app.use(express.static("public/home"));
+
+
+
 
 const products = [
   {
     id: 1,
-    name: "shoes",  //false
+    name: "shoes",  
     price: "1000",
   },
   {
     id: 2,
-    name: "t-shirt", //false 
+    name: "t-shirt", 
     price: "2000",
   },
   {
@@ -39,15 +46,16 @@ app.listen(process.env.PORT, () => {
 //routes for ALL PRODUCTS
 app.get("/products" , (req,res)=>{
 
-  //res.json(products)
-  res.sendFile("products.html", {root : "./"})
+  res.json(products)
+
 
 })
 
 
 app.get("/" , (req  , res) =>{
 
-  res.sendFile("index.html", {root : "./"})
+  
+  res.sendFile("index.html", {root : "./public"}) 
 
 })
 
@@ -77,6 +85,6 @@ if (IDparam > products.length || IDparam < 0){
   res.send("OVERFLOW")
 
 }else{
-  res.json(products[IDparam])}
+res.json(products[IDparam])}
 })
 
