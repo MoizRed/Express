@@ -39,16 +39,15 @@ app.listen(process.env.PORT, () => {
 //routes for ALL PRODUCTS
 app.get("/products" , (req,res)=>{
 
-  res.json(products)
-
+  //res.json(products)
+  res.sendFile("products.html", {root : "./"})
 
 })
 
 
 app.get("/" , (req  , res) =>{
 
-  res.sendFile("index.html" , {root : "./"})
-
+  res.sendFile("index.html", {root : "./"})
 
 })
 
