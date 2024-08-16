@@ -27,7 +27,22 @@ Btn.addEventListener("click", () => {
 
     console.log(products);
 
-    divlist.innerHTML = products[1].name;
+    
+    const ul = document.createElement("ul");
+
+    divlist.appendChild(ul);
+
+    for (let i = 0; i < products.length; i++) {
+
+      const li = document.createElement("li");
+
+      li.textContent = products[i].name;
+      
+      ul.appendChild(li);
+    }
+
+  
+
   }
 
   render();
