@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use(express.static("public/home"));
+
 
 app.listen(process.env.PORT, () => {
   Log(`listening on port http://${process.env.IP}:${process.env.PORT}`);
@@ -27,7 +27,7 @@ app.listen(process.env.PORT, () => {
 app.get("/products", (req, res) => {
   // res.json(products);
 
-  res.sendFile("products.html", { root: "./public/home" });
+  res.sendFile("products.html", { root: "./public" });
 });
 
 app.get("/", (req, res) => {
