@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import Log from "./Log.mjs";
+import Log from "../Log.mjs";
 import fs from "fs";
-const DATA = JSON.parse(fs.readFileSync("products.json", "utf8"));
+const DATA = JSON.parse(fs.readFileSync("./database/products.json", "utf8"));
 
 export const products = DATA.products;
 
@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.static("public"));
-
+app.use(express.static("public/home"));
 
 app.listen(process.env.PORT, () => {
   Log(`listening on port http://${process.env.IP}:${process.env.PORT}`);
@@ -27,11 +27,11 @@ app.listen(process.env.PORT, () => {
 app.get("/products", (req, res) => {
   // res.json(products);
 
-  res.sendFile("products.html", { root: "./public" });
+  res.sendFile("products.html", { root: "./public/products" });
 });
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "./public" });
+  res.sendFile("index.html", { root: "./public/home" });
 });
 
 // query param to get Specific Product based on the query search

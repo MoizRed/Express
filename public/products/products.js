@@ -7,6 +7,7 @@ const Btn = document.getElementById("btn");
 const divlist = document.getElementById("list");
 
 let products
+let count = 1;
 
 const fetchproducts = await async function () {
   const dat = await fetch("/api/products");
@@ -27,7 +28,8 @@ Btn.addEventListener("click", () => {
 
     console.log(products);
 
-    
+
+if (count == 1) {
     const ul = document.createElement("ul");
 
     divlist.appendChild(ul);
@@ -40,10 +42,15 @@ Btn.addEventListener("click", () => {
       
       ul.appendChild(li);
     }
-
+    count = 0;
+  }
   
+ 
 
   }
 
   render();
 });
+
+
+console.log("excuting index.js")
