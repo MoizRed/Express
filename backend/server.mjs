@@ -65,3 +65,18 @@ app.get("/api/products", (req, res) => {
 
 
 });
+//param
+app.get("/products/:IDs" , (req,res) =>{
+
+  const param = req.params.IDs
+  const ok = param.replace(":","")
+  res.send(products[ok-1])
+})
+
+
+
+app.get("/about" , (req , res) =>{
+
+  res.sendFile("./public/misc/about.html" , { root: "./" })
+ 
+})

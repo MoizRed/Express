@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./prodstyle.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <script type="module" defer src ="products.js"></script>
-    
     <title>Document</title>
-
 
 </head>
 <body>
+<header >
+<h1><a href="/">Home</a></h1>
+</header>
     <h1>Products</h1>
     <div id = "div">
 <p id="list"></p>
 </div>
-    <button id = "btn" style="background-color: rgb(0, 38, 255);">get product </button>
+    <button id = "btn" class ="btn" >get product </button>
+    <br></br>
+    <select id="select"></select>
+   
+    <button id = "selectbtn" class ="btn" > get selected </button>
+    <br></br>
+
+
+    <div>
+
+       <p style="font-weight: bold;">NAME : </p> <p id = "pname"> </p>
+       <p style="font-weight: bold;"> PRICE :</p> <p id = "pprice"> </p>
+
+    </div>
+
+    <footer class="spacer">
+
+        <a href="/about">About us</a>
+    
+    
+    </footer>
+
+    
 </body>
 </html>

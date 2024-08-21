@@ -5,9 +5,13 @@
 
 const Btn = document.getElementById("btn");
 const divlist = document.getElementById("list");
+const pname = document.getElementById("pname")
+const price = document.getElementById("pprice")
+const select = document.getElementById("select")
 
 let products
 let count = 1;
+
 
 const fetchproducts = await async function () {
   const dat = await fetch("/api/products");
@@ -46,11 +50,70 @@ if (count == 1) {
   }
   
  
+  for (let i = 0; i < products.length; i++) {
+    select.innerHTML += `<option>${products[i].name}</option>`;
+  }
+  
 
   }
 
   render();
+
+
+
+
 });
 
+select.addEventListener("click" ,()=>{
 
-console.log("excuting index.js")
+  const value = select.value
+  const product = products.find(id=>id.name  == value)
+  console.log(product)
+  const id  = product.id 
+  console.log(product.id)
+  console.log(select.value)
+
+
+
+
+
+})
+
+
+
+async function getselected(){
+
+  const value = select.value
+  const product = products.find(id=>id.name  == value)
+  const id  = product.id 
+
+  const param = await fetch(`/products/${id}`)
+  const res = await param.json()
+
+
+    return res
+
+}
+
+
+const selectbtn = document.getElementById("selectbtn")
+
+selectbtn.addEventListener("click",()=>{
+  
+  console.log("clicked selector")  
+
+
+  async function waitingfordata(){
+  const selected = await getselected()
+  
+  console.log("selected" , selected) //debug
+
+    pname.innerHTML = selected.name
+    price.innerHTML = selected.price
+
+  }
+//render
+
+waitingfordata()
+
+})
