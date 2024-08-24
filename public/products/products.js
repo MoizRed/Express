@@ -1,5 +1,7 @@
 //simple client side
 
+
+
 //ACTUALLY WE NEEED TO FETCH DATA because its a client side file
 //fetch using sync await and pass it then render it
 
@@ -8,6 +10,9 @@ const divlist = document.getElementById("list");
 const pname = document.getElementById("pname")
 const price = document.getElementById("pprice")
 const select = document.getElementById("select")
+const submit = document.getElementById("submit")
+
+
 
 let products
 let count = 1;
@@ -117,3 +122,39 @@ selectbtn.addEventListener("click",()=>{
 waitingfordata()
 
 })
+
+// forms handling
+
+const inputid = document.getElementById("prod_id")
+
+const inputname = document.getElementById("prod_name")
+
+const inputprice = document.getElementById("prod_price")
+
+
+//we construct an object from each value of the input form then we send it using the fetch , post method to the data base.
+
+//take the values from the form on click event
+//consruct an object
+//send it using fetch 
+
+submit.addEventListener("click",()=>{
+
+  postprod()
+
+})
+
+
+
+const postprod= function(){
+
+  fetch('/products', {
+    method: 'POST',
+    body: JSON.stringify({id : 6, name : "newpost" , price : 3909}),
+    headers: {
+      'Content-Type': 'application/json'
+    } 
+  })
+}
+
+

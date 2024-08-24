@@ -80,3 +80,42 @@ app.get("/about" , (req , res) =>{
   res.sendFile("./public/misc/about.html" , { root: "./" })
  
 })
+
+app.post("/products", (req , res  )=>{
+
+  console.log("triggred post")
+  console.log(req.body)
+  const { id , name , price } = req.body
+  const newproduct = { id , name , price }
+  products.push(newproduct)
+  res.status(201)
+  console.log("product added")
+  console.log(products)
+  //save to database
+  fs.readFile("./database/products.json" , "utf-8", (err , data)=>{
+    
+    if(data){
+      console.log(data)
+
+      const database = JSON.parse(data)
+      const prods = database.products
+      prods.push(newproduct)
+      console.log(typeof prods , prods)
+      const newdb = JSON.stringify({products : prods})
+      fs.writeFile("./database/products.json" , newdb , (err, data)=>{
+
+        if(err){
+          console.log(err)
+        }else{
+
+          console.log("sucess i guess?")
+
+        }
+
+      })
+
+
+    }
+  
+})
+})
